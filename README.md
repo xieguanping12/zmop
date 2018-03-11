@@ -1,19 +1,20 @@
-芝麻信用接入示例
-1、参考链接：https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.5&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull
+## 芝麻信用接入示例
+>>> [官网参考链接](https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.5&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull)
 
-2、生成芝麻信用公钥、私钥(ubuntu)
-安装openssl：sudo apt-get install openssl
-生成私钥：openssl genrsa -out rsa_private_key.pem 1024
-生成公钥：openssl rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem
-注：直接按照芝麻信用的genrsa -out rsa_private_key.pem 1024生成会报"bash: genrsa: command not found"错误，
-要用"openssl genrsa -out rsa_private_key.pem 1024"才能正确生成，通过openssl库来解析
-参考：http://blog.csdn.net/fym0121/article/details/7987512
+##### 2、生成芝麻信用公钥、私钥(ubuntu)
+安装openssl：sudo apt-get install openssl <br/>
+生成私钥：openssl genrsa -out rsa_private_key.pem 1024 <br/>
+生成公钥：openssl rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem<br/>
+注：直接按照芝麻信用的genrsa -out rsa_private_key.pem 1024生成会报"bash: genrsa: command not found"错误，<br/>
+要用"openssl genrsa -out rsa_private_key.pem 1024"才能正确生成，通过openssl库来解析<br/>
+参考：http://blog.csdn.net/fym0121/article/details/7987512<br/>
 
-3、坑
-1)zmop/ZmopClient.php文件的106行
-$logger = new LtLogger;这个类是不存在的，运行时会报错，是类找不到，注释掉再运行就ok了
-2)官网的示例代码有问题：
-这是官网的：
+3、坑<br/>
+1)zmop/ZmopClient.php文件的106行<br/>
+$logger = new LtLogger;这个类是不存在的，运行时会报错，是类找不到，注释掉再运行就ok了<br/>
+2)官网的示例代码有问题：<br/>
+这是官网的：<br/>
+```php
 include('./ZmopClient.php');
 class TestZhimaCreditScoreGet {
     //芝麻信用网关地址
@@ -39,7 +40,8 @@ class TestZhimaCreditScoreGet {
          echo json_encode($response);
     }
 }
-
+```
+```php
 这是我修改过后的：
 include('./ZmopClient.php');
 include('./request/ZhimaCreditScoreGetRequest.php');//这行我加的，不加的话会报class ZhimaCreditScoreGetRequest not found
@@ -67,3 +69,4 @@ class TestZhimaCreditScoreGet {
          echo json_encode($response);
     }
 }
+```
