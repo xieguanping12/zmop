@@ -1,5 +1,5 @@
 ## 芝麻信用接入示例
->>> [官网参考链接](https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.5&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull)
+##### 1、[官网参考链接](https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.5&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull)
 
 ##### 2、生成芝麻信用公钥、私钥(ubuntu)
 安装openssl：sudo apt-get install openssl <br/>
@@ -9,7 +9,7 @@
 要用"openssl genrsa -out rsa_private_key.pem 1024"才能正确生成，通过openssl库来解析<br/>
 参考：http://blog.csdn.net/fym0121/article/details/7987512<br/>
 
-3、坑<br/>
+##### 3、坑<br/>
 1)zmop/ZmopClient.php文件的106行<br/>
 $logger = new LtLogger;这个类是不存在的，运行时会报错，是类找不到，注释掉再运行就ok了<br/>
 2)官网的示例代码有问题：<br/>
@@ -41,8 +41,8 @@ class TestZhimaCreditScoreGet {
     }
 }
 ```
+这是我修改过后的：<br/>
 ```php
-这是我修改过后的：
 include('./ZmopClient.php');
 include('./request/ZhimaCreditScoreGetRequest.php');//这行我加的，不加的话会报class ZhimaCreditScoreGetRequest not found
 class TestZhimaCreditScoreGet {
